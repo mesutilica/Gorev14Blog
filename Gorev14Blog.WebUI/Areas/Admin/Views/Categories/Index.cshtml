@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Gorev14Blog.Core.Entities.Category>
+﻿@model IEnumerable<Category>
 
 @{
     ViewData["Title"] = "Kategoriler";
@@ -38,8 +38,8 @@
                     @Html.DisplayFor(modelItem => item.Image)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
         }

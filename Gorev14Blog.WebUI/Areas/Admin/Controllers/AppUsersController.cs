@@ -1,46 +1,42 @@
 ﻿using Gorev14Blog.Core.Entities;
 using Gorev14Blog.Service.Abstract;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin"), Authorize]
-    public class PostsController : Controller
+    [Area("Admin")]
+    public class AppUsersController : Controller
     {
-        private readonly IService<Post> _service;
-        private readonly IService<Category> _serviceCategory;
+        private readonly IService<AppUser> _service;
 
-        public PostsController(IService<Post> service, IService<Category> serviceCategory)
+        public AppUsersController(IService<AppUser> service)
         {
             _service = service;
-            _serviceCategory = serviceCategory;
         }
 
-        // GET: PostsController
+        // GET: AppUsersController
         public async Task<IActionResult> Index()
         {
             return View(await _service.GetAllAsync());
         }
 
-        // GET: PostsController/Details/5
-        public ActionResult Details(int id)
+        // GET: AppUsersController/Details/5
+        public IActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PostsController/Create
-        public async Task<ActionResult> CreateAsync()
+        // GET: AppUsersController/Create
+        public IActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
             return View();
         }
 
-        // POST: PostsController/Create
+        // POST: AppUsersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(Post collection, IFormFile? Image)
+        public async Task<IActionResult> CreateAsync(AppUser collection)
         {
             try
             {
@@ -50,23 +46,21 @@ namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
             }
             catch
             {
-                ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
                 return View();
             }
         }
 
-        // GET: PostsController/Edit/5
+        // GET: AppUsersController/Edit/5
         public async Task<IActionResult> EditAsync(int id)
         {
-            ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
             var model = await _service.FindAsync(id);
             return View(model);
         }
 
-        // POST: PostsController/Edit/5
+        // POST: AppUsersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync(int id, Post collection, IFormFile? Image)
+        public async Task<IActionResult> EditAsync(int id, AppUser collection)
         {
             try
             {
@@ -76,22 +70,21 @@ namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
             }
             catch
             {
-                ViewBag.CategoryId = new SelectList(await _serviceCategory.GetAllAsync(), "Id", "Name");
                 return View();
             }
         }
 
-        // GET: PostsController/Delete/5
-        public async Task<ActionResult> DeleteAsync(int id)
+        // GET: AppUsersController/Delete/5
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             var model = await _service.FindAsync(id);
             return View(model);
         }
 
-        // POST: PostsController/Delete/5
+        // POST: AppUsersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteAsync(int id, Post collection)
+        public async Task<IActionResult> DeleteAsync(int id, AppUser collection)
         {
             try
             {
