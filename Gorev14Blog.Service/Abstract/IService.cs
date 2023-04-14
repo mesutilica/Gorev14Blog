@@ -3,7 +3,7 @@ using Gorev14Blog.Data.Abstract;
 
 namespace Gorev14Blog.Service.Abstract
 {
-    public interface IService<T> : IRepository<T> where T : class, IEntity, new()   
+    public interface IService<T> : IRepository<T> where T : class, IEntity, new()
     {
     }
 }

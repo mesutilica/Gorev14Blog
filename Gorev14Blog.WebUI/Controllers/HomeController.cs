@@ -1,4 +1,6 @@
-﻿using Gorev14Blog.WebUI.Models;
+﻿using Gorev14Blog.Core.Entities;
+using Gorev14Blog.Service.Abstract;
+using Gorev14Blog.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +8,17 @@ namespace Gorev14Blog.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IService<Post> _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IService<Post> service)
         {
-            _logger = logger;
+            _service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            var model = await _service.GetAllAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()

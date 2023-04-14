@@ -44,6 +44,10 @@ namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
         {
             try
             {
+                string directory = Directory.GetCurrentDirectory() + "/wwwroot/Images/" + Image.FileName;
+                using var stream = new FileStream(directory, FileMode.Create);
+                await Image.CopyToAsync(stream);
+                collection.Image = Image.FileName;
                 await _service.AddAsync(collection);
                 await _service.SaveAsync();
                 return RedirectToAction(nameof(Index));
@@ -70,6 +74,13 @@ namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
         {
             try
             {
+                if (Image is not null)
+                {
+                    string directory = Directory.GetCurrentDirectory() + "/wwwroot/Images/" + Image.FileName;
+                    using var stream = new FileStream(directory, FileMode.Create);
+                    await Image.CopyToAsync(stream);
+                    collection.Image = Image.FileName;
+                }
                 _service.Update(collection);
                 await _service.SaveAsync();
                 return RedirectToAction(nameof(Index));

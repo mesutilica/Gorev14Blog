@@ -1,11 +1,11 @@
 ﻿using Gorev14Blog.Core.Entities;
 using Gorev14Blog.Service.Abstract;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gorev14Blog.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize]
     public class AppUsersController : Controller
     {
         private readonly IService<AppUser> _service;

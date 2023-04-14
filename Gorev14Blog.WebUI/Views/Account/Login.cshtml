@@ -2,31 +2,31 @@
 @{
 }
 <div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card shadow-lg border-0 rounded-lg">
-            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+    <div class="col-lg-5">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Kullanıcı Girişi</h3></div>
             <div class="card-body">
-                <form wtx-context="1446AE6B-27BD-494E-80B2-1ED2D2BA4262">
+                <form asp-action="Login">
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" wtx-context="8C04B959-5EE4-4C0C-AF60-074CADAD15A7">
-                        <label for="inputEmail">Email address</label>
+                        <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com">
+                        <label for="inputEmail">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="inputPassword" type="password" placeholder="Password" wtx-context="E99CB586-CF33-4175-8E8D-4C7202BB391F">
-                        <label for="inputPassword">Password</label>
+                        <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Şifre">
+                        <label for="inputPassword">Şifre</label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" wtx-context="157FB34A-42B1-44F6-9916-A35EE4130FA5">
-                        <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                        <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="">
+                        <label class="form-check-label" for="inputRememberPassword">Şifreyi Hatırla</label>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a class="small" href="password.html">Forgot Password?</a>
-                        <a class="btn btn-primary" href="index.html">Login</a>
+                        <a class="small" asp-action="NewPassword">Şifremi Unuttum?</a>
+                        <button class="btn btn-primary" type="submit">Giriş</button>
                     </div>
                 </form>
             </div>
             <div class="card-footer text-center py-3">
-                <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                <div class="small"><a asp-action="Register">Hesabınız yok mu? Kayıt olun!</a></div>
             </div>
         </div>
     </div>

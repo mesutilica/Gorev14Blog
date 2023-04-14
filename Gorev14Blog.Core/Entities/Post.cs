@@ -9,7 +9,7 @@ namespace Gorev14Blog.Core.Entities
         [Display(Name = "Başlık")]
         public string Title { get; set; }
 
-        [Display(Name = "Açıklama")]
+        [Display(Name = "Açıklama"), DataType(DataType.MultilineText)]
         public string? Description { get; set; }
 
         [Display(Name = "Resim")]
